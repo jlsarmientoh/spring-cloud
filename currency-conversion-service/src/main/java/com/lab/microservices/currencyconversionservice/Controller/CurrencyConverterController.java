@@ -22,19 +22,6 @@ public class CurrencyConverterController {
             @PathVariable String to,
             @PathVariable BigDecimal quantity){
 
-        /*Map<String, String> uriVariables =new HashMap<>();
-        uriVariables.put("from", from);
-        uriVariables.put("to",to);
-
-        ResponseEntity<CurrencyConversionResult> responseEntity = new RestTemplate().getForEntity(
-                "http://localhost:8000/currency-exchange/from/{from}/to/{to}",
-                CurrencyConversionResult.class,
-                uriVariables);
-
-
-        CurrencyConversionResult response = responseEntity.getBody();
-        */
-
         CurrencyConversionResult response = currencyExchangeServiceProxy.retrieveExhcangeValue(from, to);
 
         return new CurrencyConversionResult(response.getId(),
