@@ -2,6 +2,8 @@ package com.lab.microservices.currencyexchangeservice.controlller;
 
 import com.lab.microservices.currencyexchangeservice.bean.ExchangeValue;
 import com.lab.microservices.currencyexchangeservice.repository.ExchangeValueRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CurrencyExchangeController {
+
+    Logger logger = LoggerFactory.getLogger(CurrencyExchangeController.class);
 
     @Autowired
     private Environment environment;
@@ -25,6 +29,8 @@ public class CurrencyExchangeController {
         exchangeValue.setPort(
                 Integer.parseInt(this.environment.getProperty("local.server.port"))
         );
+
+        logger.info("Exhange value -> {}", exchangeValue);
         return exchangeValue;
     }
 
